@@ -2,6 +2,8 @@
 
 # This is a calclator made entirely in python !
 #First i need to ask what command they want to use
+import math
+
 import tkinter as tk#This is the library for gui in python called tkinter
 def subadd(number1,number2, finish):
     
@@ -85,52 +87,106 @@ def multiplication():
     mul1=tk.Entry(mul,width=30)#This creates the first entry box for the user to input  the fist number
     mul1.pack()#This places the first entry box on the screen
     labelnum2mul=tk.Label(mul, text="Enter number 2")#This creates a label above the second entry box
-    labelnum2mul.pack()
-    mul2=tk.Entry(mul,width=30)
-    mul2.pack()
-    Resultsmul=tk.Label(mul,text="Results will appear here")
-    Resultsmul.pack()
+    labelnum2mul.pack()#This places the label on the screen above the entry box
+    mul2=tk.Entry(mul,width=30)#This makes the entry box for the second input
+    mul2.pack()#This places the second entry box on the screen
+    Resultsmul=tk.Label(mul,text="Results will appear here")#This makes a label which will get changed due to .config in submul
+    Resultsmul.pack()#This places the label on the window
     sumbitmul=tk.Button(
         mul,
         text="Submit",
         bg="green",
         width=25,
         command=lambda : submul(mul1,mul2,Resultsmul)
-    )
+    )#This makes the buttomn to run the submul comman
     sumbitmul.pack()
-def subdiv(div1,div2,Resultsdiv):
-    fdiv1=float(div1.get())
-    fdiv2=float(div2.get())
-    finaldiv = fdiv1/fdiv2
-    Resultsdiv.config(text=(f"Result of {fdiv1}/ {fdiv2} = {finaldiv}"))
-def division ():
+def subdiv(div1,div2,Resultsdiv):#This is the function where the calculations for division will happen
+    fdiv1=float(div1.get())#This is where the users input one will be turned into a float
+    fdiv2=float(div2.get())#This is where the users input 2 wil be turned into a float
+    finaldiv = fdiv1/fdiv2#This is where the calculation happens and it gets stored in finaldiv
+    Resultsdiv.config(text=(f"Result of {fdiv1}/ {fdiv2} = {finaldiv}"))#This gets gets the result label to change and show the answer
+def division ():#This is where the window for division is created from the button below
     div=tk.Tk()#Makes a new window for division 
     div.title("Division")#So the divsion window has a title at the top
     div.configure(background="blue")#This makes the background of the window blue
     div.minsize(200, 200)#This sets the minimum size of the window of divsion to 200,200
     div.maxsize(500, 500)#This sets the maximum size of the window of division to 500,500
     div.geometry("300x300+350+350")#This sets the coordinates of the window and where it will spawn in 
-    labelnum1div=tk.Label(div, text="Enter number 1")
-    labelnum1div.pack()
-    div1=tk.Entry(div, width=30)
-    div1.pack()
-    labelnum2div=tk.Label(div, text="Enter number 2")
-    labelnum2div.pack()
-    div2=tk.Entry(div, width=30)
-    div2.pack()
-    Resultsdiv=tk.Label(div, text="Results will appear here")
-    Resultsdiv.pack()
+    labelnum1div=tk.Label(div, text="Enter number 1")#This is a label above the first entry box to tell the user to input the first number
+    labelnum1div.pack()#the label is put on the window
+    div1=tk.Entry(div, width=30)#This makes the entry box
+    div1.pack()#This puts the entrybox below the enter number label
+    labelnum2div=tk.Label(div, text="Enter number 2")#This makes a label to tell the user to type the second number
+    labelnum2div.pack()#This places the label on the window
+    div2=tk.Entry(div, width=30)#This makes the entry box for second number
+    div2.pack()#This places the entry box below the label
+    Resultsdiv=tk.Label(div, text="Results will appear here")#This makes the label which will display results later
+    Resultsdiv.pack()#This places the label on the screen
     submitdiv=tk.Button(
         div,
         text="Submit",
         bg="blue",
         width=25,
-        command= lambda : subdiv(div1,div2,Resultsdiv))
-    submitdiv.pack()
-
+        command= lambda : subdiv(div1,div2,Resultsdiv))#This makes the button for division and runs the subdiv function
+    submitdiv.pack()#This places the submit button on the screen
+def subsqr(sqr1,Resultssqr):
+    f1sqr=float(sqr1.get())
+    f2sqr=math.sqrt(f1sqr)
+    Resultssqr.config(text=(f"Result of {f1sqr}'s square root is {f2sqr}"))
+def squareroot():
+    square=tk.Tk()
+    square.title("Square Root")
+    square.configure(background="orange")
+    square.minsize(200, 200)
+    square.maxsize(500,500) 
+    square.geometry("300x300+650+50")
+    labelnum1sqr=tk.Label(square, text="Enter number for square root")
+    labelnum1sqr.pack()
+    square1=tk.Entry(square, width=30)
+    square1.pack()
+    Resultssqr=tk.Label(square, text="Results will appear here")
+    Resultssqr.pack()
+    submitsquare= tk.Button(
+        square,
+        text="Submit",
+        bg="orange",
+        width=25, 
+        command= lambda : subsqr(square1, Resultssqr)
+    )
+    submitsquare.pack()
+def subsq(sq1,sq2,Resultssq):
+    fsq1=float(sq1.get())
+    fsq2=float(sq2.get())
+    finalsq=fsq1**fsq2
+    Resultssq.config(text=(f"Result of {fsq1} to the power of {fsq2} is {finalsq}"))
+def squaress():
+    ssquare=tk.Tk()
+    ssquare.title("Squares")
+    ssquare.configure(background="purple")
+    ssquare.minsize(200, 200)
+    ssquare.maxsize(500,500)
+    ssquare.geometry("300x300+650+350")
+    sq1l=tk.Label(ssquare, text="Type the number")
+    sq1l.pack()
+    sq1=tk.Entry(ssquare, width=30)
+    sq1.pack()
+    sq2l=tk.Label(ssquare, text="Type the power")
+    sq2l.pack()
+    sq2=tk.Entry(ssquare, width=30)
+    sq2.pack()
+    Resultssq=tk.Label(ssquare, text="Results will appear here")
+    Resultssq.pack()
+    submitsq=tk.Button(
+        ssquare,
+        text="Submit",
+        bg="purple",
+        width=25,
+        command= lambda : subsq(sq1, sq2, Resultssq)
+    )
+    submitsq.pack()
 root = tk.Tk()#creates window
 root.title("Main Calculator Hub")#This gives title at the top
-root.geometry("300x150+50+50")#This gives the space taken on the screen and where it spawns in 
+root.geometry("300x200+50+50")#This gives the space taken on the screen and where it spawns in 
 label = tk.Label(root, text="Calculator fully in python !")# This gives text to label
 label.pack()#This places the label inside the window 
 addbutton = tk.Button(root, text="Addition",bg="Yellow", width=25, command=addition)# This creates the button widget and gives it text and makes the button colour yellow the last command makes the application close after the button is pressed 
@@ -141,5 +197,9 @@ mulbutton=tk.Button(root, text="Multiplication",bg="Green", width=25, command=mu
 mulbutton.pack()#This places button on the window
 divbutton=tk.Button(root, text="Division", bg="Blue", width=25, command=division)#This creates the button for the division window to be made
 divbutton.pack()#This places button on the main "root" window
+sqrbutton=tk.Button(root,text="Square Root", bg="Orange", width=25, command=squareroot)
+sqrbutton.pack()
+sqqbutton=tk.Button(root,text="Square", bg="Purple", width=25, command=squaress)
+sqqbutton.pack()
 root.mainloop()
 
