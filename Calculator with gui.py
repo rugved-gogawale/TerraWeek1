@@ -45,6 +45,7 @@ def subsub(sub1,sub2,Resultsub):#This is from when this command is called from t
     Resultsub.config(text=(f"Result of {fsub1} - {fsub2} = {finalsub}"))#This  changes the result label to display the answers
 def subtraction():
     sub =tk.Tk()#This makes the new gui window for substraction
+    sub.title("Subtraction")
     sub.configure(background="red")#This gives the background colour red just like the colour of the button in the first menu
     sub.minsize(200,200)#This sets some parameters for the window so it can only be turned into a minimum size of 200by 200
     sub.maxsize(500,500)#This sets the maximum parameters for the window so it can only be a maximum of 500 by 500
@@ -67,18 +68,23 @@ def subtraction():
         command=lambda : subsub(sub1,sub2,Resultsub)
     )#This sets therules for the button so when its pressed it will run the subsub command and the button will be a red colour
     submitsub.pack()#This places the button on the screen
+def submul(mul1,mul2,Resultsmul):#This is the function where the calculations for multiplication will happen
+    fmul1=float(mul1.get())#This is where the users input one will be turned into a float 
+    fmul2=float(mul2.get())#This is where the users second input will  be a float
+    finalmul=fmul1*fmul2#This is where the main calculation will happen and it will get turned into a variable
+    Resultsmul.config(text=(f"Result of {fmul1} x {fmul2} = {finalmul}"))#this is where the result label will change to display the answer of the calculatiom
 def multiplication():
     mul=tk.Tk()#Makes a new window for multiplication
     mul.title("Multiplication")#gives the window a title at the top
-    mul.configure(background="green")
-    mul.minsize(200, 200)
-    mul.maxsize(500, 500)
-    mul.geometry("300x300+50+350")
-    labelnum1mul=tk.Label(mul,text="Enter number 1")
-    labelnum1mul.pack()
-    mul1=tk.Entry(mul,width=30)
-    mul1.pack()
-    labelnum2mul=tk.label(mul, text="Enter number 2")
+    mul.configure(background="green")#This changes the background of the window to green 
+    mul.minsize(200, 200)#This sets the minimum size of the window
+    mul.maxsize(500, 500)#This sets the maximum size of the window
+    mul.geometry("300x300+50+350")#This sets the size of the window and where it will spawn in on the screen
+    labelnum1mul=tk.Label(mul,text="Enter number 1")#this creates a label above the first entry box to tell the user to input the fist number
+    labelnum1mul.pack()#this places the label on the screen
+    mul1=tk.Entry(mul,width=30)#This creates the first entry box for the user to input  the fist number
+    mul1.pack()#This places the first entry box on the screen
+    labelnum2mul=tk.Label(mul, text="Enter number 2")#This creates a label above the second entry box
     labelnum2mul.pack()
     mul2=tk.Entry(mul,width=30)
     mul2.pack()
@@ -86,19 +92,41 @@ def multiplication():
     Resultsmul.pack()
     sumbitmul=tk.Button(
         mul,
-        text="Submit"
-        bg="green"
-        width=25
+        text="Submit",
+        bg="green",
+        width=25,
         command=lambda : submul(mul1,mul2,Resultsmul)
     )
-
-     
-
-
-
-
-
-
+    sumbitmul.pack()
+def subdiv(div1,div2,Resultsdiv):
+    fdiv1=float(div1.get())
+    fdiv2=float(div2.get())
+    finaldiv = fdiv1/fdiv2
+    Resultsdiv.config(text=(f"Result of {fdiv1}/ {fdiv2} = {finaldiv}"))
+def division ():
+    div=tk.Tk()#Makes a new window for division 
+    div.title("Division")#So the divsion window has a title at the top
+    div.configure(background="blue")#This makes the background of the window blue
+    div.minsize(200, 200)#This sets the minimum size of the window of divsion to 200,200
+    div.maxsize(500, 500)#This sets the maximum size of the window of division to 500,500
+    div.geometry("300x300+350+350")#This sets the coordinates of the window and where it will spawn in 
+    labelnum1div=tk.Label(div, text="Enter number 1")
+    labelnum1div.pack()
+    div1=tk.Entry(div, width=30)
+    div1.pack()
+    labelnum2div=tk.Label(div, text="Enter number 2")
+    labelnum2div.pack()
+    div2=tk.Entry(div, width=30)
+    div2.pack()
+    Resultsdiv=tk.Label(div, text="Results will appear here")
+    Resultsdiv.pack()
+    submitdiv=tk.Button(
+        div,
+        text="Submit",
+        bg="blue",
+        width=25,
+        command= lambda : subdiv(div1,div2,Resultsdiv))
+    submitdiv.pack()
 
 root = tk.Tk()#creates window
 root.title("Main Calculator Hub")#This gives title at the top
@@ -109,5 +137,9 @@ addbutton = tk.Button(root, text="Addition",bg="Yellow", width=25, command=addit
 addbutton.pack()# this places the button in the window that we placed above so it fits inside the window and when its pressed the window that got placed earlier will dissapear
 subbutton= tk.Button(root, text="Subtraction", bg="Red", width=25, command=subtraction)#This creates the button for subtraction and when its pressed it will run the command of subtraction
 subbutton.pack()#This places button on the screen
+mulbutton=tk.Button(root, text="Multiplication",bg="Green", width=25, command=multiplication)#This creates the button for the Multiplication
+mulbutton.pack()#This places button on the window
+divbutton=tk.Button(root, text="Division", bg="Blue", width=25, command=division)#This creates the button for the division window to be made
+divbutton.pack()#This places button on the main "root" window
 root.mainloop()
 
